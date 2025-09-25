@@ -5,6 +5,9 @@
     },
     "api/chat-complete.js": {
       "maxDuration": 30
+    },
+    "api/chat-simple.js": {
+      "maxDuration": 30
     }
   },
   "headers": [
