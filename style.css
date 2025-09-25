@@ -1,0 +1,1708 @@
+39* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #000000;
+    color: #ffffff;
+    overflow: hidden;
+    height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -3;
+    pointer-events: none;
+}
+
+/* Animated Space Background */
+.stars, .twinkling {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    right: 0;
+    bottom: -100%;
+    width: 100%;
+    height: 300%;
+    display: block;
+    z-index: -2;
+}
+
+.stars {
+    background: #000 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="100" cy="100" r="1" fill="white" opacity="0.8"/><circle cx="300" cy="200" r="1" fill="white" opacity="0.6"/><circle cx="500" cy="150" r="1" fill="white" opacity="0.9"/><circle cx="700" cy="300" r="1" fill="white" opacity="0.7"/><circle cx="900" cy="100" r="1" fill="white" opacity="0.8"/><circle cx="200" cy="400" r="1" fill="white" opacity="0.6"/><circle cx="400" cy="500" r="1" fill="white" opacity="0.9"/><circle cx="600" cy="450" r="1" fill="white" opacity="0.7"/><circle cx="800" cy="600" r="1" fill="white" opacity="0.8"/><circle cx="100" cy="700" r="1" fill="white" opacity="0.6"/><circle cx="300" cy="800" r="1" fill="white" opacity="0.9"/><circle cx="500" cy="750" r="1" fill="white" opacity="0.7"/><circle cx="700" cy="900" r="1" fill="white" opacity="0.8"/><circle cx="900" cy="700" r="1" fill="white" opacity="0.6"/><circle cx="150" cy="300" r="1" fill="white" opacity="0.9"/><circle cx="350" cy="250" r="1" fill="white" opacity="0.7"/><circle cx="550" cy="350" r="1" fill="white" opacity="0.8"/><circle cx="750" cy="200" r="1" fill="white" opacity="0.6"/><circle cx="950" cy="400" r="1" fill="white" opacity="0.9"/><circle cx="250" cy="600" r="1" fill="white" opacity="0.7"/><circle cx="450" cy="650" r="1" fill="white" opacity="0.8"/><circle cx="650" cy="550" r="1" fill="white" opacity="0.6"/><circle cx="850" cy="800" r="1" fill="white" opacity="0.9"/></svg>') repeat;
+    background-size: 1000px 1000px;
+    animation: move-twink-back 200s linear infinite;
+}
+
+.twinkling {
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="50" cy="50" r="1" fill="white" opacity="0.3"/><circle cx="150" cy="150" r="1" fill="white" opacity="0.5"/><circle cx="250" cy="75" r="1" fill="white" opacity="0.4"/><circle cx="350" cy="175" r="1" fill="white" opacity="0.6"/><circle cx="450" cy="25" r="1" fill="white" opacity="0.3"/><circle cx="550" cy="125" r="1" fill="white" opacity="0.5"/><circle cx="650" cy="225" r="1" fill="white" opacity="0.4"/><circle cx="750" cy="75" r="1" fill="white" opacity="0.6"/><circle cx="850" cy="175" r="1" fill="white" opacity="0.3"/><circle cx="950" cy="275" r="1" fill="white" opacity="0.5"/></svg>') repeat;
+    background-size: 1000px 1000px;
+    animation: move-twink-back 100s linear infinite;
+}
+
+@keyframes move-twink-back {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 5000px; }
+}
+
+/* Floating Space Particles */
+.space-particles {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 300%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float-particle 20s infinite linear;
+}
+
+.particle:nth-child(odd) {
+    animation-duration: 25s;
+    animation-delay: -5s;
+}
+
+.particle:nth-child(3n) {
+    animation-duration: 30s;
+    animation-delay: -10s;
+}
+
+@keyframes float-particle {
+    0% {
+        transform: translateY(100vh) translateX(0) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) translateX(100px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Shooting Stars */
+.shooting-star {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: linear-gradient(45deg, white, transparent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px white;
+    z-index: -1;
+    animation: shoot 3s infinite linear;
+}
+
+.shooting-star::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, white, transparent);
+    transform: translateX(-100px);
+}
+
+@keyframes shoot {
+    0% {
+        transform: translateX(-100px) translateY(100px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100vw) translateY(-100px);
+        opacity: 0;
+    }
+}
+
+/* Nebula Effect */
+.nebula {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 300%;
+    background: radial-gradient(ellipse at 20% 30%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(30, 144, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 20, 147, 0.05) 0%, transparent 50%);
+    animation: nebula-drift 60s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes nebula-drift {
+    0%, 100% {
+        transform: translateX(0) translateY(0) scale(1);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translateX(-20px) translateY(-10px) scale(1.1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateX(10px) translateY(-20px) scale(0.9);
+        opacity: 0.4;
+    }
+    75% {
+        transform: translateX(-10px) translateY(10px) scale(1.05);
+        opacity: 0.6;
+    }
+}
+
+/* 3D Space Container */
+.space-3d-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+    z-index: -1;
+}
+
+/* Nebula Background */
+.nebula-background {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 300%;
+    background: 
+        radial-gradient(ellipse at 20% 20%, rgba(45, 27, 105, 0.8) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 30%, rgba(26, 26, 46, 0.6) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 70%, rgba(22, 33, 62, 0.7) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(12, 12, 12, 0.9) 0%, transparent 50%);
+    animation: nebula-drift 30s ease-in-out infinite;
+    z-index: -2;
+}
+
+/* Orbital Paths */
+.orbital-path {
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: orbit-rotate 60s linear infinite;
+}
+
+.orbit-1 { width: 200px; height: 200px; top: 50%; left: 40%; transform: translate(-50%, -50%); animation-duration: 20s; }
+.orbit-2 { width: 280px; height: 280px; top: 50%; left: 40%; transform: translate(-50%, -50%); animation-duration: 30s; }
+.orbit-3 { width: 360px; height: 360px; top: 50%; left: 40%; transform: translate(-50%, -50%); animation-duration: 40s; }
+.orbit-4 { width: 440px; height: 440px; top: 50%; left: 40%; transform: translate(-50%, -50%); animation-duration: 50s; }
+.orbit-5 { width: 560px; height: 560px; top: 50%; left: 40%; transform: translate(-50%, -50%); animation-duration: 60s; }
+.orbit-6 { width: 680px; height: 680px; top: 50%; left: 40%; transform: translate(-50%, -50%); animation-duration: 70s; }
+.orbit-7 { width: 800px; height: 800px; top: 50%; left: 40%; transform: translate(-50%, -50%); animation-duration: 80s; }
+.orbit-8 { width: 920px; height: 920px; top: 50%; left: 40%; transform: translate(-50%, -50%); animation-duration: 90s; }
+
+/* Sun - Real Appearance */
+.sun {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, #ffeb3b, #ff9800, #ff5722);
+    box-shadow: 0 0 60px #ffeb3b, 0 0 120px #ff9800, 0 0 180px #ff5722, inset 0 0 20px rgba(255, 255, 255, 0.3);
+    animation: sun-rotate 20s linear infinite, sun-pulse 4s ease-in-out infinite;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.sun-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff, #ffeb3b, #ff9800);
+    transform: translate(-50%, -50%);
+    animation: core-flicker 2s ease-in-out infinite;
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.solar-flare {
+    position: absolute;
+    background: linear-gradient(45deg, transparent, #ffeb3b, transparent);
+    border-radius: 50%;
+    animation: flare-pulse 3s ease-in-out infinite;
+}
+
+.flare-1 {
+    top: -20px;
+    left: 20px;
+    width: 40px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.flare-2 {
+    top: 20px;
+    right: -20px;
+    width: 20px;
+    height: 40px;
+    animation-delay: 0.5s;
+}
+
+.flare-3 {
+    bottom: -20px;
+    left: 20px;
+    width: 40px;
+    height: 20px;
+    animation-delay: 1s;
+}
+
+.flare-4 {
+    top: 20px;
+    left: -20px;
+    width: 20px;
+    height: 40px;
+    animation-delay: 1.5s;
+}
+
+/* Planets */
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    animation: planet-orbit 30s linear infinite;
+    transform-style: preserve-3d;
+}
+
+.planet-surface {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: planet-rotate 10s linear infinite;
+}
+
+.planet-atmosphere {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: atmosphere-glow 5s ease-in-out infinite;
+}
+
+/* Mercury - Real Appearance */
+.mercury {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 35px;
+    height: 35px;
+    background: #8c7853;
+    border-radius: 50%;
+    --orbit-radius: 120px;
+    animation: planet-orbit 20s linear infinite;
+    animation-delay: 0s;
+    box-shadow: inset -3px -3px 6px rgba(0,0,0,0.4), inset 3px 3px 6px rgba(255,255,255,0.2), 0 0 15px rgba(139, 120, 83, 0.6);
+    z-index: 2;
+}
+
+.mercury .planet-surface {
+    background: 
+        radial-gradient(circle at 20% 20%, #d4c4a4, #8c7853),
+        radial-gradient(circle at 60% 40%, #6b5b43, #4a3d2f),
+        radial-gradient(circle at 80% 70%, #8c7853, #5d4e37);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.4);
+}
+
+/* Venus - Real Appearance */
+.venus {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 30px;
+    height: 30px;
+    background: #ffc649;
+    border-radius: 50%;
+    --orbit-radius: 140px;
+    animation: planet-orbit 30s linear infinite;
+    animation-delay: 2s;
+    box-shadow: inset -4px -4px 8px rgba(0,0,0,0.3), inset 4px 4px 8px rgba(255,255,255,0.2);
+    z-index: 2;
+}
+
+.venus .planet-surface {
+    background: 
+        radial-gradient(circle at 25% 25%, #fff8dc, #ffc649),
+        radial-gradient(circle at 50% 50%, #ff8c00, #ff6b35),
+        radial-gradient(circle at 75% 75%, #ffc649, #ff8c00);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+}
+
+.venus .planet-atmosphere {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 200, 100, 0.3), transparent);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+/* Earth - Real Appearance */
+.earth {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 32px;
+    height: 32px;
+    background: #6b93d6;
+    border-radius: 50%;
+    --orbit-radius: 180px;
+    animation: planet-orbit 40s linear infinite;
+    animation-delay: 4s;
+    box-shadow: inset -4px -4px 8px rgba(0,0,0,0.3), inset 4px 4px 8px rgba(255,255,255,0.2);
+    z-index: 2;
+}
+
+.earth .planet-surface {
+    background: 
+        radial-gradient(circle at 15% 15%, #4a90e2, #2e7d32),
+        radial-gradient(circle at 40% 30%, #8bc34a, #4caf50),
+        radial-gradient(circle at 70% 50%, #2196f3, #1976d2),
+        radial-gradient(circle at 85% 75%, #2e7d32, #1b5e20);
+    box-shadow: inset 0 0 12px rgba(0,0,0,0.3);
+}
+
+.earth .planet-atmosphere {
+    background: radial-gradient(circle, rgba(135, 206, 235, 0.6), rgba(100, 149, 237, 0.3), transparent);
+    box-shadow: 0 0 20px rgba(135, 206, 235, 0.5);
+}
+
+.moon {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 10px;
+    height: 10px;
+    background: #c0c0c0;
+    border-radius: 50%;
+    animation: moon-orbit 3s linear infinite;
+    box-shadow: inset -2px -2px 4px rgba(0,0,0,0.5), inset 2px 2px 4px rgba(255,255,255,0.3);
+}
+
+/* Mars - Real Appearance */
+.mars {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 28px;
+    height: 28px;
+    background: #cd5c5c;
+    border-radius: 50%;
+    --orbit-radius: 220px;
+    animation: planet-orbit 50s linear infinite;
+    animation-delay: 6s;
+    box-shadow: inset -3px -3px 6px rgba(0,0,0,0.4), inset 3px 3px 6px rgba(255,255,255,0.2);
+    z-index: 2;
+}
+
+.mars .planet-surface {
+    background: 
+        radial-gradient(circle at 20% 20%, #ff6b6b, #cd5c5c),
+        radial-gradient(circle at 50% 50%, #8b4513, #654321),
+        radial-gradient(circle at 80% 80%, #cd5c5c, #a0522d);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+}
+
+/* Jupiter - Real Appearance */
+.jupiter {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 50px;
+    height: 50px;
+    background: #d2691e;
+    border-radius: 50%;
+    --orbit-radius: 280px;
+    animation: planet-orbit 60s linear infinite;
+    animation-delay: 8s;
+    box-shadow: inset -5px -5px 10px rgba(0,0,0,0.3), inset 5px 5px 10px rgba(255,255,255,0.2);
+    z-index: 2;
+}
+
+.jupiter .planet-surface {
+    background: 
+        linear-gradient(0deg, #ff8c00, #ffa500, #ffd700, #ff8c00),
+        linear-gradient(90deg, #8b4513, #cd853f, #daa520),
+        radial-gradient(ellipse at 30% 30%, #ff6b35, #ff8c00);
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
+}
+
+.jupiter-storm {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    height: 20%;
+    background: #8b4513;
+    border-radius: 50%;
+    animation: storm-rotate 8s linear infinite;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+}
+
+/* Saturn - Real Appearance */
+.saturn {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 45px;
+    height: 45px;
+    background: #fad5a5;
+    border-radius: 50%;
+    --orbit-radius: 340px;
+    animation: planet-orbit 70s linear infinite;
+    animation-delay: 10s;
+    box-shadow: inset -4px -4px 8px rgba(0,0,0,0.3), inset 4px 4px 8px rgba(255,255,255,0.2);
+    z-index: 2;
+}
+
+.saturn .planet-surface {
+    background: 
+        radial-gradient(circle at 25% 25%, #ffeb3b, #fad5a5),
+        radial-gradient(circle at 50% 50%, #daa520, #b8860b),
+        radial-gradient(circle at 75% 75%, #fad5a5, #daa520);
+    box-shadow: inset 0 0 12px rgba(0,0,0,0.3);
+}
+
+.saturn-rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    animation: rings-rotate 15s linear infinite;
+}
+
+.ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid;
+    opacity: 0.7;
+}
+
+.ring-1 {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.ring-2 {
+    top: 5px;
+    left: 5px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+}
+
+.ring-3 {
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+}
+
+/* Uranus - Real Appearance */
+.uranus {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 35px;
+    height: 35px;
+    background: #4fd0e7;
+    border-radius: 50%;
+    --orbit-radius: 400px;
+    animation: planet-orbit 80s linear infinite;
+    animation-delay: 12s;
+    box-shadow: inset -3px -3px 6px rgba(0,0,0,0.3), inset 3px 3px 6px rgba(255,255,255,0.2);
+    z-index: 2;
+}
+
+.uranus .planet-surface {
+    background: 
+        radial-gradient(circle at 20% 20%, #87ceeb, #4fd0e7),
+        radial-gradient(circle at 50% 50%, #20b2aa, #008b8b),
+        radial-gradient(circle at 80% 80%, #4fd0e7, #00ced1);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Neptune - Real Appearance */
+.neptune {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 33px;
+    height: 33px;
+    background: #4169e1;
+    border-radius: 50%;
+    --orbit-radius: 460px;
+    animation: planet-orbit 90s linear infinite;
+    animation-delay: 14s;
+    box-shadow: inset -3px -3px 6px rgba(0,0,0,0.4), inset 3px 3px 6px rgba(255,255,255,0.2);
+    z-index: 2;
+}
+
+.neptune .planet-surface {
+    background: 
+        radial-gradient(circle at 20% 20%, #6495ed, #4169e1),
+        radial-gradient(circle at 50% 50%, #191970, #000080),
+        radial-gradient(circle at 80% 80%, #4169e1, #1e3a8a);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+}
+
+/* Black Hole */
+.black-hole {
+    position: absolute;
+    top: 70%;
+    right: 20%;
+    width: 60px;
+    height: 60px;
+    z-index: 2;
+}
+
+.event-horizon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, #000, #111);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: black-hole-pulse 2s ease-in-out infinite;
+    box-shadow: inset 0 0 20px #000;
+}
+
+.accretion-disk {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    transform: translate(-50%, -50%);
+    animation: disk-rotate 3s linear infinite;
+}
+
+.disk-layer {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid;
+    opacity: 0.8;
+}
+
+.layer-1 {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-color: #ff6b6b;
+    animation: layer-rotate-1 2s linear infinite;
+}
+
+.layer-2 {
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    border-color: #ffa500;
+    animation: layer-rotate-2 1.5s linear infinite reverse;
+}
+
+.layer-3 {
+    top: 20px;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    border-color: #ffeb3b;
+    animation: layer-rotate-3 1s linear infinite;
+}
+
+.gravitational-lens {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: lens-distort 4s ease-in-out infinite;
+}
+
+/* Galaxy - Real Appearance */
+.galaxy {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    width: 150px;
+    height: 150px;
+    animation: galaxy-rotate 60s linear infinite;
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.1), transparent 70%);
+}
+
+.galaxy-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle, #fff, #ffeb3b, #ff6b35);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 40px #fff, 0 0 80px rgba(255, 235, 59, 0.5);
+}
+
+.galaxy-arm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.9), rgba(255, 235, 59, 0.6), transparent);
+    transform-origin: bottom center;
+    animation: arm-twist 20s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.arm-1 {
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation-delay: 0s;
+}
+
+.arm-2 {
+    transform: translate(-50%, -50%) rotate(90deg);
+    animation-delay: 5s;
+}
+
+.arm-3 {
+    transform: translate(-50%, -50%) rotate(180deg);
+    animation-delay: 10s;
+}
+
+.arm-4 {
+    transform: translate(-50%, -50%) rotate(270deg);
+    animation-delay: 15s;
+}
+
+
+/* Supernova */
+.supernova {
+    position: absolute;
+    top: 30%;
+    right: 30%;
+    width: 100px;
+    height: 100px;
+    animation: supernova-explode 8s ease-out infinite;
+}
+
+.explosion-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #fff, #ffeb3b, #ff6b6b);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: core-explode 2s ease-out infinite;
+}
+
+.explosion-wave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 2px solid;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: wave-expand 3s ease-out infinite;
+}
+
+.wave-1 {
+    width: 40px;
+    height: 40px;
+    border-color: rgba(255, 107, 107, 0.8);
+    animation-delay: 0s;
+}
+
+.wave-2 {
+    width: 60px;
+    height: 60px;
+    border-color: rgba(255, 165, 0, 0.6);
+    animation-delay: 0.5s;
+}
+
+.wave-3 {
+    width: 80px;
+    height: 80px;
+    border-color: rgba(255, 235, 59, 0.4);
+    animation-delay: 1s;
+}
+
+.explosion-particles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    animation: particles-scatter 4s ease-out infinite;
+}
+
+/* Asteroid Belt */
+.asteroid-belt {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    width: 500px;
+    height: 500px;
+    border: 1px solid rgba(139, 69, 19, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: belt-rotate 40s linear infinite;
+    z-index: 1;
+}
+
+.asteroid {
+    position: absolute;
+    background: #8b7355;
+    border-radius: 20%;
+    animation: asteroid-tumble 5s linear infinite;
+}
+
+.asteroid-1 {
+    top: 0;
+    left: 50%;
+    width: 8px;
+    height: 6px;
+    animation-delay: 0s;
+}
+
+.asteroid-2 {
+    top: 25%;
+    right: 0;
+    width: 6px;
+    height: 8px;
+    animation-delay: 1s;
+}
+
+.asteroid-3 {
+    bottom: 25%;
+    right: 0;
+    width: 10px;
+    height: 7px;
+    animation-delay: 2s;
+}
+
+.asteroid-4 {
+    bottom: 0;
+    left: 50%;
+    width: 7px;
+    height: 9px;
+    animation-delay: 3s;
+}
+
+.asteroid-5 {
+    bottom: 25%;
+    left: 0;
+    width: 9px;
+    height: 6px;
+    animation-delay: 4s;
+}
+
+.asteroid-6 {
+    top: 25%;
+    left: 0;
+    width: 6px;
+    height: 8px;
+    animation-delay: 5s;
+}
+
+/* Comet */
+.comet {
+    position: absolute;
+    top: 20%;
+    left: 60%;
+    width: 80px;
+    height: 20px;
+    animation: comet-fly 15s linear infinite;
+}
+
+.comet-nucleus {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #fff, #c0c0c0);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 10px #fff;
+}
+
+.comet-tail {
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    width: 70px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
+    transform: translateY(-50%);
+    animation: tail-flicker 1s ease-in-out infinite;
+}
+
+/* Chatbot Container */
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 550px;
+    height: 750px;
+    background: rgba(15, 15, 35, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+    border: 1px solid rgba(100, 150, 255, 0.3);
+    transform-origin: center;
+}
+
+
+/* Chat Header */
+.chat-header {
+    background: linear-gradient(135deg, rgba(50, 100, 200, 0.8), rgba(100, 50, 200, 0.8));
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.bot-avatar {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4a90e2, #7b68ee);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    box-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
+    position: relative;
+}
+
+.bot-avatar::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, #4a90e2, #7b68ee, #ff6b6b, #4ade80);
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.3;
+    filter: blur(8px);
+}
+
+
+
+.header-info h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.status {
+    font-size: 12px;
+    color: #4ade80;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+}
+
+
+.minimize-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.minimize-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Chat Messages */
+.chat-messages {
+    flex: 1;
+    padding: 25px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(100, 150, 255, 0.5);
+    border-radius: 3px;
+}
+
+.message {
+    display: flex;
+    gap: 15px;
+}
+
+
+.bot-message {
+    align-items: flex-start;
+}
+
+.user-message {
+    flex-direction: row-reverse;
+    align-items: flex-start;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.bot-message .message-avatar {
+    background: linear-gradient(135deg, #4a90e2, #7b68ee);
+    color: white;
+    box-shadow: 0 0 15px rgba(74, 144, 226, 0.4);
+}
+
+.user-message .message-avatar {
+    background: linear-gradient(135deg, #ff6b6b, #ffa500);
+    color: white;
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.4);
+}
+
+.message-content {
+    max-width: 85%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-message .message-content {
+    background: linear-gradient(135deg, rgba(100, 150, 255, 0.3), rgba(150, 100, 255, 0.3));
+    border: 1px solid rgba(100, 150, 255, 0.3);
+}
+
+.message-content p {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.message-time {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 5px;
+    display: block;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+}
+
+.typing-dots {
+    display: flex;
+    gap: 4px;
+}
+
+.typing-dots span {
+    width: 6px;
+    height: 6px;
+    background: #4a90e2;
+    border-radius: 50%;
+}
+
+/* Chat Input */
+.chat-input-container {
+    padding: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.input-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#messageInput {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 15px 25px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+#messageInput::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#messageInput:focus {
+    border-color: rgba(100, 150, 255, 0.5);
+    box-shadow: 0 0 20px rgba(100, 150, 255, 0.2);
+}
+
+/* Mathematical notation styling */
+.math-expression {
+    font-family: 'Times New Roman', serif;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(100, 150, 255, 0.3);
+    margin: 5px 0;
+    display: inline-block;
+}
+
+.math-result {
+    font-weight: bold;
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.math-step {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 6px;
+    border-left: 3px solid rgba(100, 150, 255, 0.5);
+}
+
+.math-formula {
+    font-family: 'Times New Roman', serif;
+    font-style: italic;
+    color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.superscript {
+    font-size: 0.7em;
+    vertical-align: super;
+}
+
+.subscript {
+    font-size: 0.7em;
+    vertical-align: sub;
+}
+
+.math-symbol {
+    font-family: 'Times New Roman', serif;
+    font-weight: bold;
+    color: #ff6b6b;
+}
+
+#sendButton {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #4a90e2, #7b68ee);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+#sendButton:hover {
+    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+}
+
+#sendButton:active {
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .chatbot-container {
+        width: calc(100vw - 20px);
+        height: calc(100vh - 20px);
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+        border-radius: 15px;
+        max-width: none;
+    }
+    
+    .chat-header {
+        padding: 15px;
+        border-radius: 15px 15px 0 0;
+    }
+    
+    .header-content {
+        gap: 10px;
+    }
+    
+    .bot-avatar {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+    
+    .header-info h2 {
+        font-size: 18px;
+    }
+    
+    .chat-messages {
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    .message-content {
+        max-width: 90%;
+        padding: 12px 16px;
+        border-radius: 15px;
+    }
+    
+    .message-content p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    
+    .chat-input-container {
+        padding: 15px;
+    }
+    
+    #messageInput {
+        padding: 12px 20px;
+        font-size: 14px;
+        border-radius: 20px;
+    }
+    
+    #sendButton {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chatbot-container {
+        width: calc(100vw - 10px);
+        height: calc(100vh - 10px);
+        bottom: 5px;
+        right: 5px;
+        left: 5px;
+        border-radius: 12px;
+    }
+    
+    .chat-header {
+        padding: 12px;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .header-content {
+        gap: 8px;
+    }
+    
+    .bot-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .header-info h2 {
+        font-size: 16px;
+    }
+    
+    .chat-messages {
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    .message-content {
+        max-width: 95%;
+        padding: 10px 14px;
+        border-radius: 12px;
+    }
+    
+    .message-content p {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+    
+    .chat-input-container {
+        padding: 12px;
+    }
+    
+    #messageInput {
+        padding: 10px 16px;
+        font-size: 13px;
+        border-radius: 18px;
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    #sendButton {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+    
+    /* Better touch targets for mobile */
+    .message-avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    /* Improve scrolling on mobile */
+    .chat-messages {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+    
+    /* Better mobile keyboard handling */
+    .chatbot-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        margin: 0;
+    }
+    
+    /* Performance optimizations for mobile */
+    .space-particles,
+    .shooting-star,
+    .nebula,
+    .space-3d-container,
+    .orbital-path,
+    .planet,
+    .sun,
+    .galaxy,
+    .black-hole,
+    .supernova,
+    .asteroid-belt,
+    .comet {
+        display: none !important;
+    }
+    
+    /* Keep only essential background */
+    .stars {
+        animation: none;
+        background: #000;
+    }
+    
+    .twinkling {
+        display: none;
+    }
+    
+    /* Reduce backdrop blur for better performance */
+    .chatbot-container {
+        backdrop-filter: none;
+        background: rgba(15, 15, 35, 0.98);
+    }
+    
+    .message-content {
+        backdrop-filter: none;
+    }
+    
+    #messageInput {
+        backdrop-filter: none;
+    }
+    
+    /* Additional mobile optimizations */
+    .chatbot-container {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    
+    /* Prevent text selection on mobile */
+    .message-content, .chat-header, .header-info {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    /* Allow text selection in input */
+    #messageInput {
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+    }
+    
+    /* Better mobile scrolling */
+    .chat-messages {
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Mobile-specific button styles */
+    .minimize-btn, #sendButton {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+    
+    /* Prevent zoom on input focus */
+    input, textarea, select {
+        font-size: 16px;
+    }
+}
+
+/* Glow Effects */
+.chatbot-container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #4a90e2, #7b68ee, #ff6b6b, #4ade80);
+    border-radius: 22px;
+    z-index: -1;
+    opacity: 0.3;
+    filter: blur(10px);
+}
+
+
+/* 3D Space Animations */
+@keyframes sun-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes sun-pulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 0 50px #ffeb3b, 0 0 100px #ff9800, 0 0 150px #ff5722;
+    }
+    50% { 
+        transform: scale(1.1);
+        box-shadow: 0 0 60px #ffeb3b, 0 0 120px #ff9800, 0 0 180px #ff5722;
+    }
+}
+
+@keyframes core-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes flare-pulse {
+    0%, 100% { 
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes planet-orbit {
+    0% { transform: translate(-50%, -50%) rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg); }
+}
+
+@keyframes orbit-rotate {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes planet-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes atmosphere-glow {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+@keyframes moon-orbit {
+    0% { transform: rotate(0deg) translateX(15px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(15px) rotate(-360deg); }
+}
+
+@keyframes storm-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rings-rotate {
+    0% { transform: translate(-50%, -50%) rotateX(60deg) rotateY(0deg); }
+    100% { transform: translate(-50%, -50%) rotateX(60deg) rotateY(360deg); }
+}
+
+@keyframes black-hole-pulse {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1);
+        box-shadow: inset 0 0 20px #000, 0 0 30px rgba(255, 0, 0, 0.3);
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: inset 0 0 30px #000, 0 0 50px rgba(255, 0, 0, 0.5);
+    }
+}
+
+@keyframes disk-rotate {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes layer-rotate-1 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes layer-rotate-2 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes layer-rotate-3 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes lens-distort {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1);
+        border-radius: 50%;
+    }
+    25% { 
+        transform: translate(-50%, -50%) scale(1.1);
+        border-radius: 40% 60% 40% 60%;
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.2);
+        border-radius: 60% 40% 60% 40%;
+    }
+    75% { 
+        transform: translate(-50%, -50%) scale(1.1);
+        border-radius: 40% 60% 40% 60%;
+    }
+}
+
+@keyframes galaxy-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes arm-twist {
+    0%, 100% { 
+        transform: translate(-50%, -50%) rotate(0deg) skew(0deg);
+        opacity: 0.8;
+    }
+    25% { 
+        transform: translate(-50%, -50%) rotate(90deg) skew(5deg);
+        opacity: 1;
+    }
+    50% { 
+        transform: translate(-50%, -50%) rotate(180deg) skew(0deg);
+        opacity: 0.8;
+    }
+    75% { 
+        transform: translate(-50%, -50%) rotate(270deg) skew(-5deg);
+        opacity: 1;
+    }
+}
+
+@keyframes supernova-explode {
+    0% { 
+        transform: scale(0);
+        opacity: 0;
+    }
+    20% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+    80% { 
+        transform: scale(1.5);
+        opacity: 0.8;
+    }
+    100% { 
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes core-explode {
+    0% { 
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0.8;
+    }
+    100% { 
+        transform: translate(-50%, -50%) scale(4);
+        opacity: 0;
+    }
+}
+
+@keyframes wave-expand {
+    0% { 
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% { 
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
+@keyframes particles-scatter {
+    0% { 
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% { 
+        transform: translate(-50%, -50%) scale(1) translate(100px, 100px);
+        opacity: 0;
+    }
+}
+
+@keyframes belt-rotate {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes asteroid-tumble {
+    0% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(90deg) scale(1.1); }
+    50% { transform: rotate(180deg) scale(1); }
+    75% { transform: rotate(270deg) scale(0.9); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes comet-fly {
+    0% { 
+        transform: translateX(-100px) translateY(0px);
+        opacity: 0;
+    }
+    10% { 
+        opacity: 1;
+    }
+    90% { 
+        opacity: 1;
+    }
+    100% { 
+        transform: translateX(100vw) translateY(-50px);
+        opacity: 0;
+    }
+}
+
+@keyframes tail-flicker {
+    0%, 100% { 
+        opacity: 0.8;
+        transform: translateY(-50%) scaleX(1);
+    }
+    50% { 
+        opacity: 1;
+        transform: translateY(-50%) scaleX(1.2);
+    }
+}
+
